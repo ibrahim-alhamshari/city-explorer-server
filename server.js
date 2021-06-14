@@ -1,6 +1,6 @@
 const express = require('express') // require the express package
 const app = express() // initialize your express app instance
- 
+const data = require('./data/weather.json');
 const cors = require('cors');
 
 app.use(cors()) // after you initialize your express app instance
@@ -14,6 +14,10 @@ app.get('/', // our endpoint name
   console.log('Hello ibrahim');
   res.send('Hello World') 
   // our endpoint function response
-})
+});
  
+
+ app.get('/weather-data'),(request, response)=>{
+    response.json(data)
+  }
 app.listen(port) // kick start the express server to work
