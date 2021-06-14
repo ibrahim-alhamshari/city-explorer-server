@@ -18,6 +18,8 @@ app.get('/', // our endpoint name
  
 
  app.get('/weather-data'),(request, response)=>{
+  console.log('Hello ibrahim');
+  res.send('Hello World');
     response.json(data)
   }
 app.listen(port) // kick start the express server to work
