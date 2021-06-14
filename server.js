@@ -12,12 +12,12 @@ const port = process.env.port;
 app.get('/', // our endpoint name
  function (req, res) { // callback function of what we should do with our request
   console.log('Hello ibrahim');
-  res.send('Hello World') 
+  res.send('Hello ibrahim') 
   // our endpoint function response
 });
  
 
- app.get('/weather-data'),(request, response)=>{
+ app.get('/weather-data',(request, response)=>{
     response.json(data)
-  }
+  })
 app.listen(port) // kick start the express server to work
