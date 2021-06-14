@@ -11,7 +11,9 @@ const port = process.env.port;
 // a server endpoint 
 app.get('/', // our endpoint name
  function (req, res) { // callback function of what we should do with our request
-  res.send('Hello World') // our endpoint function response
+  console.log('Hello ibrahim');
+  res.send('Hello World') 
+  // our endpoint function response
 })
  
 app.listen(port) // kick start the express server to work
