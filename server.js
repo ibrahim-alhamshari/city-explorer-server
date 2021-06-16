@@ -3,53 +3,24 @@ const app = express() // initialize your express app instance
 const weatherData = require('./data/weather.json');
 const axios = require('axios');
 const cors = require('cors');
-const { request, response } = require('express');
-
-app.use(cors()) // after you initialize your express app instance
-
 require('dotenv').config();
+const { request, response } = require('express');
+const WeatherController = require('./controller/Weather.controller');
+const indexController = require('./controller/index.controller');
+const movieController =require('./controller/Movie.controller');
 const PORT = process.env.PORT;
-const WEATHER_BIT_KEY = process.env.WEATHER_BIT_KEY
-
-// a server endpoint 
-app.get('/', // our endpoint name
-  function (req, res) { // callback function of what we should do with our request
-    console.log('Hello ibrahim');
-    res.send('Hello ibrahim')
-    // our endpoint function response
-  });
+app.use(cors()); // after you initialize your express app instance
 
 
-app.get('/weather-data', (request, res) => {
-  console.log(request.query);
-  let lat = request.query.lat;
-  let lon = request.query.lon;
+app.get('/', indexController);
 
-  if (lat && lon) {
-    
-    const weatherBitUrl = `https://api.weatherbit.io/v2.0/forecast/daily?key=${WEATHER_BIT_KEY}&lat=${lat}&lon=${lon}`;
+app.get('/weather-data', WeatherController );
 
-    axios.get(weatherBitUrl).then(response => {
-      const responseData = response.data.data.map(object => new Forecast(object))
-      res.json(responseData);
-    }).catch(error => {
-      res.send(error.message);
-    })
+app.get('/movie' , movieController)
 
-    // response.json(responseData);
-  } else {
-    response.send('please provide the proper lat and lon')
-  }
+app.listen(PORT,()=>{
+  console.log('this like PORT' , PORT)
+}) // kick start the express server to work
 
 
-
-})
-app.listen(PORT) // kick start the express server to work
-
-class Forecast {
-  constructor(weatherData) {
-    this.description = weatherData.weather.description,
-      this.date = weatherData.valid_date
-  }
-}
 
