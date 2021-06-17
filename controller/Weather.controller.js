@@ -7,7 +7,6 @@ const Cache =require('../helper/cache');
 const cacheObj= new Cache();
 
 const weatherController = (request, res) => {
-    console.log(request.query);
     let lat = request.query.lat;
     let lon = request.query.lon;
     let requestKey= `weather-data-${lat}-${lon}`
@@ -27,10 +26,16 @@ let currentDate = Date.now();
         const weatherBitUrl = `https://api.weatherbit.io/v2.0/forecast/daily?key=${WEATHER_BIT_KEY}&lat=${lat}&lon=${lon}`;
         axios.get(weatherBitUrl).then(response => {
             const responseData = response.data.data.map(object => new Forecast(object));
-            cacheObj[requestKey]= {data:responseData};
+            cacheObj[requestKey]= {cachedData:responseData};
             cacheObj[requestKey].timeStamp= Date.now();
-            
-            res.json(responseData);
+            const previusDate = cacheObj[requestKey].timeStamp;
+            const cacheVariable= cacheObj[requestKey];
+            console.log(responseData);
+            console.log('=======');
+            console.log(cacheVariable);
+
+            res.json(cacheVariable);
+
         }).catch(error => {
             res.send(error.message);
         })
