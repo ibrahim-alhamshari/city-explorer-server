@@ -25,10 +25,12 @@ let requestKey =cityName;
             } else {
               return new MovieClass(element);
             }})
-            cacheObj[requestKey]= {data:respnsedData};
+            cacheObj[requestKey]= {cachedData:respnsedData};
             cacheObj[requestKey].timeStamp= Date.now();
-            console.log(cacheObj[requestKey]);
-          res.send(respnsedData)
+            const previusDate = cacheObj[requestKey].timeStamp;
+            const cacheVariable= cacheObj[requestKey];
+
+          res.send(cacheVariable);
         })
         .catch((error) => {
           res.send(error);
