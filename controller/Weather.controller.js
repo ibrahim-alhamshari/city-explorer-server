@@ -28,10 +28,11 @@ const weatherController = (request, res) => {
                 cacheObj[requestKey].timeStamp = previusDate;
                 const cacheVariable = cacheObj[requestKey];
 
-                date = new Date(1546108200 * 1000);
+                date = new Date(previusDate);
+                
                 cacheObj[requestKey].date = date;
                 console.log(cacheObj[requestKey].date);
-                
+
                 res.json(cacheVariable);
 
             }).catch(error => {
