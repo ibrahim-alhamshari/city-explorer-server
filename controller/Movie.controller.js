@@ -11,7 +11,6 @@ let requestKey =cityName;
   if (cityName) {
     if (cacheObj[requestKey]) {
       const results = cacheObj[requestKey];
-      console.log(results);
       res.send(results);
 
     } else {
