@@ -18,9 +18,10 @@ app.get('/weather-data', WeatherController );
 
 app.get('/movie' , movieController)
 
-app.listen(PORT,()=>{
-  console.log('this like PORT' , PORT)
-}) // kick start the express server to work
+app.listen(PORT)
+//   ,()=>{
+//   console.log('this like PORT' , PORT)
+// }) // kick start the express server to work
 
 
 
