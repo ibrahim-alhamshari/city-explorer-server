@@ -9,7 +9,7 @@ const cacheObj = new Cache();
 const weatherController = (request, res) => {
     let lat = request.query.lat;
     let lon = request.query.lon;
-    let requestKey = `weather-data-${lat}-${lon}`
+    let requestKey = `${lat}&${lon}` // keys, we are here concatenate them.
     // 
     let currentDate = Date.now();
     let date;
